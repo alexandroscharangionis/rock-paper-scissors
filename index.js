@@ -1,76 +1,90 @@
 console.log("Welome to Rock, Paper, Scissors. Best out of 5 wins. Good luck!");
 
 let selections = ["Rock", "Paper", "Scissors"];
-let computerSelection;
-let playerSelection;
 let computerPoints = 0;
 let playerPoints = 0;
-let generalScore;
 
-function playRound(computerSelection, playerSelection) {
-  function computerPlay() {
-    let randomSelection = Math.floor(Math.random() * selections.length);
-    if (randomSelection == 0) {
-      randomSelection = selections[0];
-    } else if (randomSelection == 1) {
-      randomSelection = selections[1];
-    } else if (randomSelection == 2) {
-      randomSelection = selections[2];
+function computerWins(givenComputerSelection, givenPlayerSelection) {
+  //TODO: discuss '==' vs '==='
+  if (givenComputerSelection === givenPlayerSelection) {
+    return false;
+  } else if (givenComputerSelection === "rock") {
+    if (givenPlayerSelection === "paper") {
+      return false;
     }
-    return randomSelection;
-  }
-
-  computerSelection = computerPlay();
-
-  let initialSelection = prompt("Select rock, paper or scissors: ");
-  initialSelection = initialSelection.toLowerCase();
-
-  if (initialSelection == "rock") {
-    playerSelection = selections[0];
-    console.log(`You chose ${playerSelection.toLowerCase()}.`);
-  } else if (initialSelection == "paper") {
-    playerSelection = selections[1];
-    console.log(`You chose ${playerSelection.toLowerCase()}.`);
-  } else if (initialSelection == "scissors") {
-    playerSelection = selections[2];
-    console.log(`You chose ${playerSelection.toLowerCase()}.`);
+  } else if (givenComputerSelection === "paper") {
+    if (givenPlayerSelection === "scissors") {
+      return false;
+    }
   } else {
-    console.log(
-      "You can only choose rock, paper or scissors. Refresh and try again."
-    );
+    if (givenPlayerSelection === "rock") {
+      return false;
+    }
   }
 
-  if (computerSelection === playerSelection) {
-    console.log(
-      `Computer chose ${playerSelection.toLowerCase()} too. Phew! This round is a draw.`
-    );
-    computerPoints = ++computerPoints;
-    playerPoints = ++playerPoints;
-  } else if (
-    (computerSelection === selections[0] &&
-      playerSelection === selections[1]) ||
-    (computerSelection === selections[1] &&
-      playerSelection === selections[2]) ||
-    (computerSelection === selections[2] && playerSelection === selections[0])
-  ) {
-    console.log(
-      `Computer chose ${computerSelection.toLowerCase()}. You win this round.`
-    );
-    playerPoints = ++playerPoints;
-  } else {
-    console.log(
-      `Computer chose ${computerSelection.toLowerCase()} and won this round. Nice try though.`
-    );
-    computerPoints = ++computerPoints;
+  return true;
+}
+function itIsADraw(givenComputerSelection, givenPlayerSelection) {
+  if (givenComputerSelection !== givenPlayerSelection) {
+    return false;
   }
-  generalScore =
-    "Score: Computer " + computerPoints + " - " + playerPoints + " Player";
-  console.log(generalScore);
+
+  return true;
+}
+function parseUserSelection(givenUserPopupSelection) {
+  if (givenUserPopupSelection == "rock") {
+    console.log(`You chose ${givenUserPopupSelection.toLowerCase()}.`);
+    return selections[0];
+  } else if (givenUserPopupSelection == "paper") {
+    console.log(`You chose ${givenUserPopupSelection.toLowerCase()}.`);
+    return selections[1];
+  } else if (givenUserPopupSelection == "scissors") {
+    console.log(`You chose ${givenUserPopupSelection.toLowerCase()}.`);
+    return selections[2];
+  } else {
+    console.log("You can only choose rock, paper or scissors. Refresh and try again.");
+  }
+
+  return undefined;
+}
+
+function generateComputerSelection() {
+  //TODO: discuss about 'let' & 'const'
+  const randomNumber = Math.floor(Math.random() * selections.length);
+
+  return selections[randomNumber];
+}
+
+function playRound() {
+  let computerSelection;
+  let playerSelection;
+
+  computerSelection = generateComputerSelection();
+
+  let popupReference = prompt("Select rock, paper or scissors: ");
+  let userPopupSelection = popupReference.toLowerCase();
+
+  playerSelection = parseUserSelection(userPopupSelection);
+
+
+  if (itIsADraw(computerSelection, playerSelection)) {
+    console.log(`Computer chose ${playerSelection.toLowerCase()} too. Phew! This round is a draw.`);
+    ++computerPoints;
+    ++playerPoints;
+  } else if (computerWins(computerSelection, playerSelection)) {
+    console.log(`Computer chose ${computerSelection.toLowerCase()} and won this round. Nice try though.`);
+    ++computerPoints;
+  } else {
+    console.log(`Computer chose ${computerSelection.toLowerCase()}. You win this round.`);
+    ++playerPoints;
+  }
+
+  console.log(`Score: Computer ${computerPoints} - ${playerPoints} Player`);
 }
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    playRound(computerSelection, playerSelection);
+    playRound();
   }
   if (computerPoints > playerPoints) {
     console.log(`Game over. You lost, sorry! Refresh to play again.`);
