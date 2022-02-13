@@ -2,9 +2,9 @@ const computerChoiceDisplay = document.getElementById("computer-choice");
 const userChoiceDisplay = document.getElementById("user-choice");
 const resultDisplay = document.getElementById("result");
 const possibleChoices = document.querySelectorAll("button");
-let userChoice;
+let userSelection;
 let computerPoints = 0;
-let playerPoints = 0;
+let userPoints = 0;
 let computerSelection;
 
 function titleCase(string) {
@@ -13,8 +13,8 @@ function titleCase(string) {
 
 possibleChoices.forEach((possibleChoice) =>
   possibleChoice.addEventListener("click", (e) => {
-    userChoice = e.target.id;
-    userChoiceDisplay.textContent = titleCase(userChoice);
+    userSelection = titleCase(e.target.id);
+    userChoiceDisplay.textContent = userSelection;
     playRound();
   })
 );
@@ -32,10 +32,6 @@ function generateComputerSelection() {
   return computerSelection;
 }
 
-function playRound() {
-  generateComputerSelection();
-}
-
 function draw() {
   resultDisplay.textContent = `It's a draw.`;
 }
@@ -47,4 +43,21 @@ function computerWins() {
 
 function userWins() {
   resultDisplay.textContent = `You won this round.`;
+  return ++userPoints;
+}
+
+function playRound() {
+  generateComputerSelection();
+
+  if (computerSelection === userSelection) {
+    draw();
+  } else if (
+    (computerSelection === "Rock" && userSelection === "Scissors") ||
+    (computerSelection === "Scissors" && userSelection === "Paper") ||
+    (computerSelection === "Paper" && userSelection === "Rock")
+  ) {
+    computerWins();
+  } else {
+    userWins();
+  }
 }
