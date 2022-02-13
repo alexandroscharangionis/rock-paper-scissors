@@ -1,0 +1,19 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.score-box {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.score {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}

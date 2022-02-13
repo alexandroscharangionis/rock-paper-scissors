@@ -1,7 +1,13 @@
 const computerChoiceDisplay = document.getElementById("computer-choice");
 const userChoiceDisplay = document.getElementById("user-choice");
 const resultDisplay = document.getElementById("result");
-const possibleChoices = document.querySelectorAll("button");
+const possibleChoices = document.querySelectorAll(".choice");
+const userScore = document.getElementById("user-score");
+const computerScore = document.getElementById("computer-score");
+
+userScore.textContent = 0;
+computerScore.textContent = 0;
+
 let userSelection;
 let computerPoints = 0;
 let userPoints = 0;
@@ -60,4 +66,9 @@ function playRound() {
   } else {
     userWins();
   }
+  userScore.textContent = userPoints;
+  computerScore.textContent = computerPoints;
+
+  // if ((userPoints || computerPoints) === 5) {
+  // }
 }

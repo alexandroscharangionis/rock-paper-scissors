@@ -4,22 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <link href="styles.css" rel="stylesheet" type="text/css" />
     <title>Document</title>
   </head>
   <body>
     <div class="container-main">
-      <h2 class="heading-main">Rock, Paper, Scissors</h2>
+      <h2 class="heading-main">Rock. Paper. Scissors.</h2>
       <p>Are you ready to face the mighty Computer?</p>
       <p>First to get to 5 points wins.</p>
+
       <p>Choose your weapon:</p>
       <div class="btn-container">
-        <button id="rock">ROCK</button>
-        <button id="paper">PAPER</button>
-        <button id="scissors">SCISSORS</button>
+        <button class="choice" id="rock">ROCK</button>
+        <button class="choice" id="paper">PAPER</button>
+        <button class="choice" id="scissors">SCISSORS</button>
       </div>
       <h3 class="heading-secondary">
-        Player choice: <span id="user-choice"></span>
+        Your choice: <span id="user-choice"></span>
       </h3>
 
       <h3 class="heading-secondary">
@@ -27,6 +28,17 @@
       </h3>
 
       <h3 class="heading-secondary"><span id="result"></span></h3>
+      <h3 class="heading-secondary">Score</h3>
+      <div class="score-box" id="scorebox">
+        <div class="score">
+          <p>Player</p>
+          <span id="user-score"></span>
+        </div>
+        <div class="score">
+          <span id="computer-score"></span>
+          <p>Computer</p>
+        </div>
+      </div>
     </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
