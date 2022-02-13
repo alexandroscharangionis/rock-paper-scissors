@@ -5,7 +5,6 @@ const possibleChoices = document.querySelectorAll(".choice");
 const userScore = document.getElementById("user-score");
 const computerScore = document.getElementById("computer-score");
 const startGame = document.getElementById("start-btn");
-const gameMenu = document.getElementById("game-menu");
 
 userScore.textContent = 0;
 computerScore.textContent = 0;
@@ -20,6 +19,7 @@ function titleCase(string) {
 }
 
 function displayGameMenu() {
+  const gameMenu = document.getElementById("game-menu");
   gameMenu.style.display = "block";
   introMenu = document.getElementById("intro-menu");
   introMenu.style.display = "none";
@@ -79,6 +79,19 @@ function playRound() {
   userScore.textContent = userPoints;
   computerScore.textContent = computerPoints;
 
-  // if ((userPoints || computerPoints) === 5) {
-  // }
+  if (userPoints === 5 || computerPoints === 5) {
+    mainMenu = document.getElementById("main");
+    mainMenu.style.display = "none";
+    const gameOver = document.getElementById("game-over-container");
+    gameOver.style.display = "block";
+
+    const gameOverPara = document.getElementById("game-over-para");
+    if (computerPoints > userPoints) {
+      gameOverPara.textContent = `Mighty Computer won the game with ${computerPoints} - ${userPoints}. Better luck next time.`;
+    } else {
+      gameOverPara.textContent = `Congratulations, you won the game with ${userPoints} - ${computerPoints}. Ready for another one?`;
+    }
+    const newGameBtn = document.getElementById("new-game-btn");
+    newGameBtn.addEventListener("click", () => (reload = location.reload()));
+  }
 }

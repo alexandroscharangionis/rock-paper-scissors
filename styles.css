@@ -21,3 +21,7 @@ body {
 .container-after-start {
   display: none;
 }
+
+.game-over {
+  display: none;
+}
