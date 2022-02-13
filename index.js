@@ -1,5 +1,3 @@
-alert("Welome to Rock, Paper, Scissors. Best out of 5 wins. Good luck!");
-
 let selections = ["Rock", "Paper", "Scissors"];
 let computerPoints = 0;
 let playerPoints = 0;
@@ -7,16 +5,16 @@ let playerPoints = 0;
 function computerWins(givenComputerSelection, givenPlayerSelection) {
   if (givenComputerSelection === givenPlayerSelection) {
     return false;
-  } else if (givenComputerSelection === "rock") {
-    if (givenPlayerSelection === "paper") {
+  } else if (givenComputerSelection === "Rock") {
+    if (givenPlayerSelection === "Paper") {
       return false;
     }
-  } else if (givenComputerSelection === "paper") {
-    if (givenPlayerSelection === "scissors") {
+  } else if (givenComputerSelection === "Paper") {
+    if (givenPlayerSelection === "Scissors") {
       return false;
     }
   } else {
-    if (givenPlayerSelection === "rock") {
+    if (givenPlayerSelection === "Rock") {
       return false;
     }
   }
@@ -88,16 +86,33 @@ function playRound() {
 }
 
 function game() {
-  for (let i = 0; i < 5; i++) {
-    alert(`Round ${i + 1} out of 5.`);
+  alert("Welome to Rock, Paper, Scissors.");
+
+  let numberOfRoundsToWin = prompt(
+    "Choose how many points you want to play up to: ",
+    ""
+  );
+
+  let i = 0;
+
+  while (
+    !(
+      computerPoints === parseInt(numberOfRoundsToWin) ||
+      playerPoints === parseInt(numberOfRoundsToWin)
+    )
+  ) {
+    alert(`Round ${++i}.`);
     playRound();
-    if (
-      (computerPoints === 3 && playerPoints === 0) ||
-      (computerPoints === 0 && playerPoints === 3)
-    ) {
-      break;
-    }
   }
+
+  // for (let i = 0; i < 5; i++) {
+  //   alert(`Round ${i + 1} out of 5.`);
+  //   playRound();
+  //   if (computerPoints === 3 || playerPoints === 3) {
+  //     break;
+  //   }
+  // }
+
   if (computerPoints > playerPoints) {
     alert(`Game over. You lost, sorry! Refresh to play again.`);
   } else if (playerPoints > computerPoints) {
@@ -106,5 +121,3 @@ function game() {
     alert(`Game over. Kinda weird but... It's a draw. Refresh to play again.`);
   }
 }
-
-game();
