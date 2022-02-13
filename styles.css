@@ -17,3 +17,7 @@ body {
   align-items: center;
   gap: 1rem;
 }
+
+.container-after-start {
+  display: none;
+}

@@ -4,6 +4,8 @@ const resultDisplay = document.getElementById("result");
 const possibleChoices = document.querySelectorAll(".choice");
 const userScore = document.getElementById("user-score");
 const computerScore = document.getElementById("computer-score");
+const startGame = document.getElementById("start-btn");
+const gameMenu = document.getElementById("game-menu");
 
 userScore.textContent = 0;
 computerScore.textContent = 0;
@@ -16,6 +18,14 @@ let computerSelection;
 function titleCase(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+function displayGameMenu() {
+  gameMenu.style.display = "block";
+  introMenu = document.getElementById("intro-menu");
+  introMenu.style.display = "none";
+}
+
+startGame.addEventListener("click", displayGameMenu);
 
 possibleChoices.forEach((possibleChoice) =>
   possibleChoice.addEventListener("click", (e) => {
