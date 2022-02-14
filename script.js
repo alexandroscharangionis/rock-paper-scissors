@@ -25,7 +25,11 @@ function displayGameMenu() {
   introMenu.style.display = "none";
 }
 
-startGame.addEventListener("click", displayGameMenu);
+startGame.addEventListener("click", () => {
+  setTimeout(() => {
+    displayGameMenu();
+  }, 200);
+});
 
 possibleChoices.forEach((possibleChoice) =>
   possibleChoice.addEventListener("click", (e) => {
