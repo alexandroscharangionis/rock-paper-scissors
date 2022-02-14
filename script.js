@@ -89,11 +89,14 @@ function playRound() {
     const gameOver = document.getElementById("game-over-container");
     gameOver.style.display = "block";
 
-    const gameOverPara = document.getElementById("game-over-para");
+    const gameOverPara1 = document.getElementById("game-over-para1");
+    const gameOverPara2 = document.getElementById("game-over-para2");
     if (computerPoints > userPoints) {
-      gameOverPara.textContent = `Mighty Computer won the game with ${computerPoints} - ${userPoints}. Better luck next time.`;
+      gameOverPara1.textContent = `Mighty Computer won the game with ${computerPoints} - ${userPoints}.`;
+      gameOverPara2.textContent = `Want to try again?`;
     } else {
-      gameOverPara.textContent = `Congratulations, you won the game with ${userPoints} - ${computerPoints}. Ready for another one?`;
+      gameOverPara1.textContent = `Congratulations, you won the game with ${userPoints} - ${computerPoints}.`;
+      gameOverPara2.textContent = `Ready for another one?`;
     }
     const newGameBtn = document.getElementById("new-game-btn");
     newGameBtn.addEventListener("click", () => (reload = location.reload()));
