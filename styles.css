@@ -43,6 +43,7 @@ body {
 
 .start-game:hover {
   transform: translateY(-0.5rem);
+  cursor: pointer;
 }
 
 .start-game:active {
@@ -70,6 +71,7 @@ body {
 
 .choice:hover {
   transform: translateY(-0.5rem);
+  cursor: pointer;
 }
 
 .choice:active {
